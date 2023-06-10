@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+    <title>List Files</title>
+  </head>
+
+  <body>
+    <nav class="bg-gray-800 p-4">
+      <div class="flex justify-evenly container mx-auto">
+        <a href="/upload_file" class="text-white font-semibold text-xl"
+          >Upload</a
+        >
+        <a href="/" class="text-white font-semibold text-xl">FileList</a>
+      </div>
+    </nav>
+    <div
+      class="flex flex-col justify-evenly items-center container mx-auto mt-4"
+    >
+      <h1 class="text-2xl font-semibold mb-4">List Files</h1>
+      <ul>
+        {% for file in files %}
+        <li>
+          <span>{{ file.name }}</span>
+          <a
+            href="{{ url_for('share_file', file_path=file.path_display) }}"
+            class="ml-2 text-blue-500"
+            >Share</a
+          >
+          <a
+            href="{{ url_for('download_file', file_path=file.path_display) }}"
+            class="ml-2 text-green-500"
+            >Download</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
